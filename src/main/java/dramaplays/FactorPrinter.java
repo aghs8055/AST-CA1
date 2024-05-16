@@ -12,6 +12,10 @@ import java.util.Map;
 public class FactorPrinter {
 
     public String print(Invoice invoice, Map<String, Play> plays) {
+        if (plays == null) {
+            throw new Error("null plays is not allowed");
+        }
+
         var totalAmount = 0;
         var volumeCredits = 0;
         var result = String.format("Factor for %s\n", invoice.customer);
@@ -20,6 +24,10 @@ public class FactorPrinter {
 
         for (var perf : invoice.performances) {
             var play = plays.get(perf.playID);
+            if (play == null) {
+                throw new Error(String.format("unknown play: %s", perf.playID));
+            }
+
             var thisAmount = 0;
 
             switch (play.type) {
@@ -37,7 +45,7 @@ public class FactorPrinter {
                     thisAmount += 300 * perf.audience;
                     break;
                 default:
-                    throw new Error("unknown type: ${play.type}");
+                    throw new Error(String.format("unknown type: %s", play.type));
             }
 
             // add volume credits
