@@ -1,4 +1,4 @@
-package dramaplays;
+package dramaplays.model;
 
 import java.util.List;
 

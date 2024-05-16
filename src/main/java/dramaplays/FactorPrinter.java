@@ -1,5 +1,8 @@
 package dramaplays;
 
+import dramaplays.model.Invoice;
+import dramaplays.model.Play;
+
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
@@ -8,7 +11,7 @@ import java.util.Map;
 
 public class FactorPrinter {
 
-    public String print(dramaplays.Invoice invoice, Map<String, dramaplays.Play> plays) {
+    public String print(Invoice invoice, Map<String, Play> plays) {
         var totalAmount = 0;
         var volumeCredits = 0;
         var result = String.format("Factor for %s\n", invoice.customer);
